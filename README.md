@@ -4,16 +4,20 @@
 
 **Secure, Real-time, and Private Messaging for the Modern Web.**
 
+> 🚧 **Note:** This application is currently under active development. Features are subject to change.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.x-green.svg)](https://flask.palletsprojects.com/)
 [![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange.svg)](https://firebase.google.com/)
 
-[Features](#-features) • [Tech Stack](#-tech-stack) • [Installation](#-installation) • [Contributing](#-contributing)
+[Description](#-description) • [Features](#-features) • [Tech Stack](#-tech-stack) • [Installation](#-installation) • [Contributing](#-contributing)
 
 </div>
 
 ---
+
+## 📖 Description
 
 **Privalk Web** is an open-source, secure, and real-time messaging application built with Flask and Firebase. It features a modern, responsive UI with customizable themes (including AMOLED mode), privacy-focused settings, and a seamless user experience.
 
@@ -47,7 +51,7 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/privalk.git
+   git clone https://github.com/akash-kumarrr/privalk.git
    cd privalk
    ```
 
@@ -105,5 +109,5 @@ This project is licensed under the MIT License.
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by <a href="https://github.com/yourusername">Your Name</a></sub>
+  <sub>Built with ❤️ by <a href="https://github.com/akash-kumarrr">Akash</a></sub>
 </div>
