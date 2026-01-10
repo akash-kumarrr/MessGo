@@ -20,7 +20,7 @@ function initializeBackButton() {
 }
 
 function initializeThemeSwitcher() {
-    const currentTheme = localStorage.getItem('privalk_color_theme') || 'green-black';
+    const currentTheme = localStorage.getItem('talkup_color_theme') || 'green-black';
     
     // Highlight the active theme button
     document.querySelectorAll('.theme-option').forEach(opt => {
@@ -86,22 +86,22 @@ function initializeFontSizeSwitcher() {
 }
 
 function toggleAmoled(isChecked) {
-    localStorage.setItem('privalk_amoled', isChecked);
+    localStorage.setItem('talkup_amoled', isChecked);
     applyAppearance();
 }
 
 function setWallpaper(url) {
-    localStorage.setItem('privalk_wallpaper', url);
+    localStorage.setItem('talkup_wallpaper', url);
     applyAppearance();
 }
 
 function setBubbleStyle(style) {
-    localStorage.setItem('privalk_bubble', style);
+    localStorage.setItem('talkup_bubble', style);
     applyAppearance();
 }
 
 function setFontSize(size) {
-    localStorage.setItem('privalk_fontsize', size);
+    localStorage.setItem('talkup_fontsize', size);
     applyAppearance();
 }
 
@@ -110,7 +110,7 @@ function applyAppearance() {
     const body = document.body;
     
     // 1. AMOLED (Only applies if not light mode)
-    const isAmoled = localStorage.getItem('privalk_amoled') === 'true';
+    const isAmoled = localStorage.getItem('talkup_amoled') === 'true';
     const isLight = body.classList.contains('light-mode');
     
     if (isAmoled && !isLight) {
@@ -126,12 +126,12 @@ function applyAppearance() {
     }
 
     // 2. Wallpaper
-    const wallpaper = localStorage.getItem('privalk_wallpaper');
+    const wallpaper = localStorage.getItem('talkup_wallpaper');
     if (wallpaper) root.style.setProperty('--chat-bg-image', `url('${wallpaper}')`);
     else root.style.setProperty('--chat-bg-image', 'none');
 
     // 3. Bubble Style
-    const bubble = localStorage.getItem('privalk_bubble') || 'modern';
+    const bubble = localStorage.getItem('talkup_bubble') || 'modern';
     let radius = '16px';
     if (bubble === 'rounded') radius = '25px';
     if (bubble === 'classic') radius = '4px';
@@ -144,7 +144,7 @@ function applyAppearance() {
     });
 
     // 4. Font Size
-    const size = localStorage.getItem('privalk_fontsize') || 'medium';
+    const size = localStorage.getItem('talkup_fontsize') || 'medium';
     let fontSize = '0.9rem';
     if (size === 'small') fontSize = '0.8rem';
     if (size === 'large') fontSize = '1.05rem';
@@ -163,7 +163,7 @@ function applyAppearance() {
 
 function applyTheme(themeKey) {
     document.documentElement.setAttribute('data-theme', themeKey);
-    localStorage.setItem('privalk_color_theme', themeKey);
+    localStorage.setItem('talkup_color_theme', themeKey);
     
     // Haptic feedback for mobile feel
     if (navigator.vibrate) navigator.vibrate(10);

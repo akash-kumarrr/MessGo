@@ -1,4 +1,4 @@
-# Privalk
+# TalkUp
 
 > **"Your words belong to the moment, not the server."**
 
@@ -6,13 +6,13 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.0%2B-green)](https://flask.palletsprojects.com/)
 
-Privalk is a real-time messaging sanctuary built on the philosophy of ephemeral communication. In a world where everything is recorded, we offer the freedom of transience. Connect securely using unique keys or usernames, manage your private profile, and experience privacy by design.
+TalkUp is a real-time messaging sanctuary built on the philosophy of ephemeral communication. In a world where everything is recorded, we offer the freedom of transience. Connect securely using unique keys or usernames, manage your private profile, and experience privacy by design.
 
 ---
 
 ## 🛡️ Core Philosophy
 
-We believe that digital communication should mimic the natural, fleeting nature of face-to-face conversation. Privalk is designed to be a **"Private Existence"** platform where your digital footprint is minimized by default.
+We believe that digital communication should mimic the natural, fleeting nature of face-to-face conversation. TalkUp is designed to be a **"Private Existence"** platform where your digital footprint is minimized by default.
 
 ---
 
@@ -34,7 +34,7 @@ We believe that digital communication should mimic the natural, fleeting nature 
 
 ## 🛠️ Tech Stack
 
-Privalk is engineered for speed, security, and simplicity using a robust modern stack.
+TalkUp is engineered for speed, security, and simplicity using a robust modern stack.
 
 | Layer | Technology | Description |
 | :--- | :--- | :--- |
@@ -60,8 +60,8 @@ Ensure you have the following installed on your machine:
 
 1.  **Clone the Repository**
     ```bash
-    git clone https://github.com/yourusername/privalk.git
-    cd privalk
+    git clone https://github.com/yourusername/talkup.git
+    cd talkup
     ```
 
 2.  **Set up a Virtual Environment (Recommended)**
