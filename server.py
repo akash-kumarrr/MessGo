@@ -401,6 +401,13 @@ def load_chat_list(user):
         data = chat.to_dict()
         friend_username = data.get('username')
         
+        ts = 0
+        if data.get('timestamp'):
+            try:
+                ts = data.get('timestamp').timestamp()
+            except:
+                ts = 0
+        
         # Optimization: Use denormalized data if available
         if 'last_message' in data:
             chat_list.append({
@@ -409,7 +416,7 @@ def load_chat_list(user):
                 'time': data.get('time'),
                 'date': data.get('date'),
                 'sender': data.get('sender'),
-                'timestamp': data.get('timestamp')
+                'timestamp': ts
             })
         else:
             # Fallback for legacy data: fetch last message from subcollection
@@ -417,13 +424,19 @@ def load_chat_list(user):
                 last_msg_query = user_ref.collection("chat_list").document(friend_username).collection("messages").order_by('timestamp', direction=firestore.Query.DESCENDING).limit(1).get()
                 if last_msg_query:
                     last_msg = last_msg_query[0].to_dict()
+                    lm_ts = 0
+                    if last_msg.get('timestamp'):
+                        try:
+                            lm_ts = last_msg.get('timestamp').timestamp()
+                        except:
+                            lm_ts = 0
                     chat_list.append({
                         'username': friend_username,
                         'last_message': last_msg.get('message'),
                         'time': last_msg.get('time'),
                         'date': last_msg.get('date'),
                         'sender': last_msg.get('sender'),
-                        'timestamp': last_msg.get('timestamp')
+                        'timestamp': lm_ts
                     })
                 else:
                      chat_list.append({'username': friend_username, 'last_message': '', 'time': '', 'date': '', 'sender': '', 'timestamp': 0})
@@ -459,6 +472,11 @@ def load_chats(user, friend, after_timestamp=None):
             data['sender'] = 'friend'
         if data['receiver'] == friend:
             data['receiver'] = 'friend'
+            
+        ts = 0
+        if data.get('timestamp'):
+            ts = data.get('timestamp').timestamp()
+            
         output = {
             'id': message.id,
             'sender' : data['sender'],
@@ -466,7 +484,7 @@ def load_chats(user, friend, after_timestamp=None):
             'message' : data['message'],
             'time' : data['time'],
             'date' : data['date'],
-            'timestamp': data.get('timestamp').timestamp() if data.get('timestamp') else 0
+            'timestamp': ts
         }
         chats.append(output)
     return chats
@@ -486,13 +504,17 @@ def listen_for_messages(user, friend, after_timestamp=None):
                 # Normalize sender for frontend
                 sender_type = 'me' if data['sender'] == user else 'friend'
                 
+                ts = 0
+                if data.get('timestamp'):
+                    ts = data.get('timestamp').timestamp()
+                
                 output = {
                     'id': change.document.id,
                     'sender': sender_type,
                     'message': data['message'],
                     'time': data['time'],
                     'date': data['date'],
-                    'timestamp': data.get('timestamp').timestamp() if data.get('timestamp') else 0
+                    'timestamp': ts
                 }
                 q.put(output)
 

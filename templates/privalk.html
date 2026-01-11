@@ -2130,6 +2130,10 @@
                 // Render single message
                 renderChatHistory([msg], true);
                 
+                if (msg.timestamp) {
+                    lastChatTimestamp = msg.timestamp;
+                }
+                
                 // Auto scroll if near bottom
                 const isAtBottom = (container.scrollHeight - container.scrollTop) <= (container.clientHeight + 150);
                 if (isAtBottom || container.children.length < 10) {
