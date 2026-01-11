@@ -2318,8 +2318,17 @@
 
             input.value = '';
             
-            const url = `/chat/load_chat/${currentChatUser}/send_message?user=${encodeURIComponent(myUsername)}&friend=${encodeURIComponent(currentChatUser)}&message=${encodeURIComponent(text)}&time=${encodeURIComponent(time)}&date=${encodeURIComponent(date)}`;
-            fetch(url).catch(e => console.error(e));
+            const formData = new FormData();
+            formData.append('user', myUsername);
+            formData.append('friend', currentChatUser);
+            formData.append('message', text);
+            formData.append('time', time);
+            formData.append('date', date);
+
+            fetch(`/chat/load_chat/${currentChatUser}/send_message`, {
+                method: 'POST',
+                body: formData
+            }).catch(e => console.error(e));
         }
 
         function renderMessageHTML(text, type, time, timestamp, id) {

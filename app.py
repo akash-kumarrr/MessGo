@@ -141,14 +141,17 @@ def load_chats_section(friend):
 @app.route('/chat/stream/<friend>')
 def stream_chat(friend):
     after = request.args.get('after')
-    return Response(listen_for_messages(session['username'], friend, after), mimetype='text/event-stream')
+    response = Response(listen_for_messages(session['username'], friend, after), mimetype='text/event-stream')
+    response.headers['X-Accel-Buffering'] = 'no'
+    response.headers['Cache-Control'] = 'no-cache'
+    return response
 
-@app.route('/chat/load_chat/<friend>/send_message')
+@app.route('/chat/load_chat/<friend>/send_message', methods=['GET', 'POST'])
 def send_message(friend):
-    user = request.args.get('user')
-    message = request.args.get('message')
-    time = request.args.get('time')
-    date = request.args.get('date')
+    user = request.values.get('user')
+    message = request.values.get('message')
+    time = request.values.get('time')
+    date = request.values.get('date')
     push_to_chat_list(user, friend)
     push_to_chat_list(friend, user)
     push_message(user, friend, message, time, date)

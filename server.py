@@ -538,7 +538,8 @@ def listen_for_messages(user, friend, after_timestamp=None):
                 msg = q.get(timeout=5)
                 yield f"data: {json.dumps(msg)}\n\n"
             except queue.Empty:
-                yield ": keep-alive\n\n"
+                # Send a comment with padding to force flush through Nginx/proxy buffers
+                yield ": keep-alive " + (" " * 1024) + "\n\n"
     except GeneratorExit:
         watch.unsubscribe()
     except Exception as e:
